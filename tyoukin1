@@ -1,4 +1,6 @@
 (function () {
+const VERSION = "v1.0";
+console.log("超勤１:", VERSION);
 'use strict';
 
 /********** 共通 **********/
