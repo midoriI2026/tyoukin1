@@ -7,5 +7,4 @@
 // @run-at       document-end
 // @require      https://raw.githubusercontent.com/midoriI2026/tyoukin1/main/tyoukin1.js?v=1.0
 // @grant        none
-
 // ==/UserScript==
