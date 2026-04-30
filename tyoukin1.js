@@ -1,5 +1,5 @@
 (function () {
-const VERSION = "v1.0";
+const VERSION = "v1.1";
 console.log("超勤1:", VERSION);
 
 'use strict';
@@ -36,24 +36,27 @@ if (location.href.includes("page=DBRecord")) {
 
         const url = new URL(reuseLink.href, location.origin);
 
+        // ★ 再利用を強制
+        url.searchParams.set("mode", "reuse");
+
+        // ★ 編集モード除去（これ重要）
+        url.searchParams.delete("rw");
+
         // トリガー
         url.searchParams.set("autoTotal", "1");
 
         location.href = url.toString();
     };
-
     document.body.appendChild(btn);
 }
 
 /********** DBForm：自動実行 **********/
-if (location.href.includes("page=DBForm")) {
+    if (location.href.includes("page=DBForm") &&
+        location.href.includes("mode=reuse") &&
+        new URL(location.href).searchParams.get("autoTotal") === "1") {
 
-    const url = new URL(location.href);
-
-    if (url.searchParams.get("autoTotal") !== "1") return;
-
-    setTimeout(runAutoTotal, 500);
-}
+        setTimeout(runAutoTotal, 500);
+    }
 
 async function runAutoTotal() {
 
